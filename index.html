@@ -17,10 +17,8 @@
 <script>
   const root = document.getElementById("root");
   const title = React.createElement("h3", {
-    id: "sexy-span",
-    style: {
-      color: "pink"
-    }
+    id: "title",
+    onMouseEnter: () => console.log("mouse enter")
   }, "Hello button!");
 
   const btn = React.createElement("button", {
