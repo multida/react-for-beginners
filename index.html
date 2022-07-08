@@ -16,13 +16,18 @@
 <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
 <script>
   const root = document.getElementById("root");
-  const span = React.createElement("span", {
+  const title = React.createElement("h3", {
     id: "sexy-span",
     style: {
       color: "pink"
     }
-  }, "Hello");
-  ReactDOM.render(span, root); //react element를 가지고 html을 만들어 배치하여 사용자에게 보여준다는 뜻. (어떤걸, 어디에)
+  }, "Hello button!");
+
+  const btn = React.createElement("button", {
+    onClick: () => console.log("click")
+  }, "Click button");
+  const container = React.createElement("div", null, [title, btn]);
+  ReactDOM.render(container, root);
 </script>
 
 </html>
