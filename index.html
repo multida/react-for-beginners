@@ -18,23 +18,30 @@
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script> -->
 <script type="text/babel">
   const root = document.getElementById("root");
-  let counter = 0;
-  function countUp() {
-    counter = counter + 1;
-    render()
-  }
-  function render() {
-    ReactDOM.render(<Container />, root); 
-  }
-  function Container() {
+
+  function App() {
+    // const counter = data[0];
+    // const modifier = data[1];
+    const [counter, setCounter] = React.useState(0);
+    //useState는 우리에게 배열을 하나 준다. 
+    //첫번째 요소는 우리가 담으려는 data 값
+    //두번째 요소는 이 data값을 바꿀때 사용하는 modifier 임.
+
+    const onClick = () => {
+      // counter = counter + 1;
+      setCounter(counter + 1);
+    };
+
     return (
       <div>
-      <h3>Total clicks: {counter}</h3>
-      <button onClick={countUp}>Click me!</button>
-    </div>
-    )
+        <h3>Total clicks: {counter}</h3>
+        <button onClick = {onClick}>Click me!</button>
+      </div>
+    );
+
+    
   }
-  render()
+  ReactDOM.render(<App />, root); 
 </script>
 
 </html>
