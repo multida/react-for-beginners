@@ -17,8 +17,7 @@
   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script> -->
   <script type="text/babel">
     const root = document.getElementById("root");
-
-    function App() {
+    function MinutesToHours() {
       //set~~을 사용할때마다 ui가 새로고침됨.
       const [amount, setAmount] = React.useState(0);
       const [inverted, setInverted] = React.useState(false);
@@ -33,7 +32,6 @@
       
       return (
         <div>
-          <h1 className="">Super Converter</h1>
           <div>
             <label htmlFor="minutes">Minutes</label>
             <input
@@ -58,6 +56,32 @@
           </div>
           <button onClick={reset}>Reset</button>
           <button onClick={onFlip}>{inverted ? "Turn back" : "Invert"}Flip</button>
+        </div>
+      );
+    }
+    function KmToMiles() {
+      //작업해보자... km을 miles 단위로 변경되는것... 껄껄껄
+      return (
+        <h3>KM 2 M</h3>
+      );
+    }
+    function App() {
+      const [index, setIndex] = React.useState("xx");
+      const onSelect = (e) => {
+        setIndex(e.target.value);
+      }
+      return (
+        <div>
+          <h1 className="">Super Converter</h1>
+          <select value={index} onChange={onSelect} >
+            <option value="xx">선택하시오</option>
+            <option value="0">Minutes &amp; Hours</option>
+            <option value="1">Km &amp; Miles</option>
+          </select>
+          <hr />
+          {index == "xx" ? "Please select your units" : null}
+          {index == "0" ? <MinutesToHours /> : null}
+          {index == "1" ? <KmToMiles /> : null}
         </div>
       );
     }
