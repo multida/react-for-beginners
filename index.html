@@ -16,11 +16,27 @@
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script> -->
   <script type="text/babel">
-    
+    function Btn({text,big}) {
+      return <button style={{
+        backgroundColor:"tomato",
+        border: 0,
+        borderRadius: 5,
+        color: "#fff",
+        padding: "10px 20px",
+        fontSize: big ? 10:20
+
+      }}>{text}</button>;
+    }
+    function Confirm() {
+      return <button>Confirm</button>;
+    }
     function App() {
-      return (
-        <div></div>;
-      );
+      return ( //text 대신에 다른거 사용해줘도 상관없다.
+        <div>
+          <Btn text="Save Change" big={true} />
+          <Btn text="Confirm" big={false} />  
+        </div>
+      )
     }
 
     const root = document.getElementById("root");
