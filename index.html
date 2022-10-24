@@ -13,31 +13,35 @@
 
   <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
   <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script> -->
   <script type="text/babel">
-    function Btn({text, changeValue}) {
-      console.log(text, "was renderd");
-      return <button 
-      onClick={changeValue} //여기서 onClick은 이벤트리스너가 맞음. 
-      style={{
-        backgroundColor:"tomato",
-        border: 0,
-        borderRadius: 5,
-        color: "#fff",
-        padding: "10px 20px",
-        fontSize: 16
-      }}>{text}</button>;
+    function Btn({text, fontSize = 12}) {
+      return (
+        <button 
+          style={{
+            backgroundColor:"tomato",
+            border: 0,
+            borderRadius: 10,
+            color: "#fff",
+            padding: "10px 20px",
+            fontSize,
+          }}>
+          {text}
+        </button>
+      );
     }
-    const MemorizedBtn = React.memo(Btn);//props가 변경되지 않는다면 다시 그릴 필요가 없다. 
+    Btn.propTypes = {
+      text: PropTypes.string.isRequired, //반드시? 있어야 한다 -> 필수 옵션임
+      fontSize: PropTypes.number,
+    }
     function App() {
-      const [value, setValue] = React.useState("Save Change");
-      const changeValue = () => setValue("Revert changes");
       return ( 
-      <div>
-        <MemorizedBtn text={value} changeValue={changeValue} />
-        <MemorizedBtn text="Confirm" />  
-      </div>
+        <div>
+          <Btn text="Save Change" fontSize={18} />
+          <Btn text={14} fontSize={"Continue"} />
+        </div>
       )
     }
 
