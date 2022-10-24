@@ -16,26 +16,33 @@
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script> -->
   <script type="text/babel">
-    function Btn({text,big}) {
-      return <button style={{
+    function Btn({text, changeValue}) {
+      console.log(text, "was renderd"); //confirm 버트은 굳이 바뀌지 않아도 됨. 근데 re-renderd되고 있음. 이걸 막을 수 있는 것이 Memo라는 것임.
+      return <button 
+      onClick={changeValue} //여기서 onClick은 이벤트리스너가 맞음. 
+      style={{
         backgroundColor:"tomato",
         border: 0,
         borderRadius: 5,
         color: "#fff",
         padding: "10px 20px",
-        fontSize: big ? 10:20
-
+        fontSize: 16
       }}>{text}</button>;
     }
     function Confirm() {
       return <button>Confirm</button>;
     }
     function App() {
-      return ( //text 대신에 다른거 사용해줘도 상관없다.
-        <div>
-          <Btn text="Save Change" big={true} />
-          <Btn text="Confirm" big={false} />  
-        </div>
+      const [value, setValue] = React.useState("Save Change");
+      const changeValue = () => setValue("Revert changes");
+      return ( 
+        //text 대신에 다른거 사용해줘도 상관없다.
+        //여기서 changeValue는 props를 뜻함
+        //뭐든 props에 넣는다고 자동적으로 저기 btn 함수 안에 있는 return 안으로 들어가지 않는다. 위에 매개변수? 파라미터? 자리에 props를 잘 넣어주어야 한다.
+      <div>
+        <Btn text={value} changeValue={changeValue} />
+        <Btn text="Confirm" />  
+      </div>
       )
     }
 
